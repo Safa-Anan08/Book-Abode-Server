@@ -132,17 +132,15 @@ export const googleLogin = async (
         }
       );
 
-    res.cookie(
-      "token",
-      token,
-      {
-        httpOnly:true,
-        secure:process.env.NODE_ENV === "production",
-        sameSite:"lax",
-        maxAge:
-          7*24*60*60*1000
-      }
-    );
+    res.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite:
+    process.env.NODE_ENV === "production"
+      ? "none"
+      : "lax",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+});
 
 
 
@@ -159,21 +157,15 @@ export const googleLogin = async (
 
 
 
-  } catch(error){
+  } 
+  catch (error: any) {
+  console.error("GOOGLE ERROR:", error);
 
-    console.log(error);
-
-
-    res.status(500).json({
-
-      success:false,
-
-      message:
-        "Google login failed"
-
-    });
-
-  }
+  return res.status(500).json({
+    success: false,
+    message: error.message,
+  });
+}
 
 };
 export const register = async (req: Request, res: Response) => {

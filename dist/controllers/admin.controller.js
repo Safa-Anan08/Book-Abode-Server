@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRecentActivity = exports.deleteReport = exports.resolveReport = exports.getAllReports = exports.deleteUser = exports.updateUserRole = exports.sendBookReport = exports.deleteAnyBook = exports.getWishlistAnalytics = exports.getAllWishlists = exports.getAllBooks = exports.getAllUsers = exports.getDashboardStats = void 0;
+exports.getContacts = exports.getRecentActivity = exports.deleteReport = exports.resolveReport = exports.getAllReports = exports.deleteUser = exports.updateUserRole = exports.sendBookReport = exports.deleteAnyBook = exports.getWishlistAnalytics = exports.getAllWishlists = exports.getAllBooks = exports.getAllUsers = exports.getDashboardStats = void 0;
 const mongodb_1 = require("mongodb");
 const db_1 = require("../config/db");
 const getDashboardStats = async (req, res) => {
@@ -488,3 +488,24 @@ const getRecentActivity = async (req, res) => {
     }
 };
 exports.getRecentActivity = getRecentActivity;
+const getContacts = async (req, res) => {
+    try {
+        const db = (0, db_1.getDB)();
+        const contacts = await db
+            .collection("contacts")
+            .find()
+            .sort({ createdAt: -1 })
+            .toArray();
+        res.status(200).json({
+            success: true,
+            contacts,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Failed to load contacts",
+        });
+    }
+};
+exports.getContacts = getContacts;

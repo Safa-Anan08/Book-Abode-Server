@@ -19,4 +19,5 @@ router.get("/reports", admin_controller_1.getAllReports);
 router.patch("/reports/:id/resolve", admin_controller_1.resolveReport);
 router.delete("/reports/:id", admin_controller_1.deleteReport);
 router.get("/activity", admin_controller_1.getRecentActivity);
+router.get("/contacts", admin_controller_1.getContacts);
 exports.default = router;

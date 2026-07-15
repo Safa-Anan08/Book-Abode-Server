@@ -259,6 +259,9 @@ const deleteBook = async (req, res) => {
 };
 exports.deleteBook = deleteBook;
 const updateBook = async (req, res) => {
+    console.log("BODY:", req.body);
+    console.log("FILES:", req.files);
+    console.log("ID:", req.params.id);
     try {
         const db = (0, db_1.getDB)();
         const id = String(req.params.id);

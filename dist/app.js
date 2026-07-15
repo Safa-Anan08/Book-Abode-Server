@@ -14,6 +14,7 @@ const report_routes_1 = __importDefault(require("./routes/report.routes"));
 const notification_routes_1 = __importDefault(require("./routes/notification.routes"));
 const upload_routes_1 = __importDefault(require("./routes/upload.routes"));
 const payment_routes_1 = __importDefault(require("./routes/payment.routes"));
+const contact_routes_1 = __importDefault(require("./routes/contact.routes"));
 const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
@@ -31,6 +32,7 @@ app.use("/api/notifications", notification_routes_1.default);
 app.use("/uploads", express_1.default.static(path_1.default.join(process.cwd(), "uploads")));
 app.use("/api/upload", upload_routes_1.default);
 app.use("/api/payment", payment_routes_1.default);
+app.use("/api/contact", contact_routes_1.default);
 app.get("/", (_, res) => {
     res.send("BookAbode API Running");
 });
