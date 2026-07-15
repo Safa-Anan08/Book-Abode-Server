@@ -610,4 +610,28 @@ export const getRecentActivity = async (
     });
   }
 };
+export const getContacts = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const db = getDB();
+
+    const contacts = await db
+      .collection("contacts")
+      .find()
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    res.status(200).json({
+      success: true,
+      contacts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to load contacts",
+    });
+  }
+};
 

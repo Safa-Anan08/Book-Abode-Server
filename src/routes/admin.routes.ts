@@ -12,7 +12,7 @@ import {
   getAllReports,
   resolveReport,
   deleteReport,
-  getRecentActivity,
+  getRecentActivity,getContacts
  
 } from "../controllers/admin.controller";
 
@@ -64,6 +64,6 @@ router.get(
   "/activity",
   getRecentActivity
 );
-
+router.get("/contacts", getContacts);
 
 export default router;
