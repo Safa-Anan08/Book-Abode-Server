@@ -355,7 +355,12 @@ export const updateBook = async (
   req: Request,
   res: Response
 ): Promise<void> => {
+   console.log("BODY:", req.body);
+ console.log("FILES:", req.files);
+ console.log("ID:", req.params.id);
   try {
+
+   
     const db = getDB();
 
     const id = String(req.params.id);

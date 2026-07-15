@@ -9,6 +9,7 @@ import reportRoutes from "./routes/report.routes";
 import notificationRoutes from "./routes/notification.routes";
 import uploadRoutes from "./routes/upload.routes";
 import paymentRoutes from "./routes/payment.routes";
+import contactRoutes from "./routes/contact.routes";
 import path from "path";
 const app = express();
 
@@ -43,7 +44,7 @@ app.use(
 app.use("/api/upload", uploadRoutes);
 
 app.use("/api/payment", paymentRoutes);
-
+app.use("/api/contact",contactRoutes);
 app.get("/", (_, res) => {
   res.send("BookAbode API Running");
 });
