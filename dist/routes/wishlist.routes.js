@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const protect_1 = require("../middleware/protect");
+const wishlist_controller_1 = require("../controllers/wishlist.controller");
+const router = (0, express_1.Router)();
+router.get("/", protect_1.protect, wishlist_controller_1.getWishlist);
+router.post("/:bookId", protect_1.protect, wishlist_controller_1.addWishlist);
+router.delete("/:bookId", protect_1.protect, wishlist_controller_1.removeWishlist);
+router.get("/check/:bookId", protect_1.protect, wishlist_controller_1.checkWishlist);
+exports.default = router;

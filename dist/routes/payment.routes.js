@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const protect_1 = require("../middleware/protect");
+const payment_controller_1 = require("../controllers/payment.controller");
+const router = (0, express_1.Router)();
+router.post("/checkout", protect_1.protect, payment_controller_1.createCheckoutSession);
+router.post("/confirm", protect_1.protect, payment_controller_1.confirmPayment);
+router.get("/download/:bookId", protect_1.protect, payment_controller_1.downloadBook);
+router.get("/can-download/:bookId", protect_1.protect, payment_controller_1.canDownloadBook);
+exports.default = router;
